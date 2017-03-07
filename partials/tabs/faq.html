@@ -1,15 +1,26 @@
 <div class="main-content-faq container-fluid">
-  <ul class="collapsible" data-collapsible="accordion">
+  <ul class="collapsible" data-collapsible="accordion" id="{{index+1}}">
     <li ng-repeat="(ques,ans) in toc.faqs">
      <div class="collapsible-header"><i class="fa fa-question" aria-hidden="true"></i><p btf-markdown="ques"></p></div>
-      <div class="collapsible-body"><p btf-markdown ng-include="'data/faq/' + ans"></p>
+      <div class="collapsible-body" ><p btf-markdown ng-include="'data/faq/' + ans"></p>
       </div>
     </li>
   </ul>
 </div>
 
 <script type="text/javascript">
-     $(document).ready(function(){
+  $(document).ready(function() {
     $('.collapsible').collapsible();
+    $("a[href^='/#/faq'").click(function() {
+        $("p[btf-markdown=ques]")[11].click();
+        $("p[btf-markdown=ques]").each(function(k,v) {
+          if(k==11) {
+            $('html,body').animate({
+              scrollTop: $(this).offset().top-350},
+              'slow');
+      }
+    });
+   });
   });
 </script>
+
